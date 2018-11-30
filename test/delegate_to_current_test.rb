@@ -5,7 +5,13 @@ class DelegateToCurrentTest < Minitest::Test
     refute_nil ::DelegateToCurrent::VERSION
   end
 
-  def test_it_does_something_useful
-    assert false
+  def test_time
+    @now = DelegateToCurrent[::Time]
+    assert ::Time.current.beginning_of_day, @now.beginning_of_day
+  end
+
+  def test_date
+    @today = DelegateToCurrent[::Date]
+    assert ::Date.current.beginning_of_week, @today.beginning_of_week
   end
 end
